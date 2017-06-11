@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>shooter</title>
+    <style>
+        #game {
+            background-image: url("data:image/jpeg;base64,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");
+            background-size: 100% 100%;
+            height: 98%;
+            width: 45%;
+            background-repeat: no-repeat;
+            position: absolute;
+            left: 0px;
+            z-index: 1;
+        }
+        
+        #rules {
+            position: absolute;
+            left: 60%;
+            top: 25%; 
+            font-size: 115%;
+            color: white;
+        }
+        
+        #welcome {
+            position: absolute;
+            left: 70%;
+            font-size: 150%;
+            color: white;
+        }
+        
+        #ufo {
+            background-image: url("https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQkxBiHWmaiAhpPFSYWPYqIGK9ExtY1XO_E_0CqHV11GrTg89ouAw");
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+        }
+        
+        #sidenote {
+            position: absolute;
+            left: 60%;
+            top: 50%;
+            font-size: 115%;
+            color: white;
+        }
+    </style>
+</head>
+
+<body style="background-color: #001a33; font-family: Comic Sans MS, cursive, sans-serif">
+    <svg id="game">
+        <g id="button" display="yes">
+            <rect id="fun" x="50%" y="50%" height="4%" width="7%" style="fill:  #ff9700" onclick="runn()" />
+            <text x="51%" y="53%" font-family="Verdana" font-size="75%" fill="white" onclick="runn()"> start </text>
+            <text x="38%" y="10%" font-family="Verdana" font-size="150%" fill=" #ff9700"> Space Shooter</text>
+        </g>
+
+        //allows the the image to be put into an svg element
+        <defs>
+            <pattern id="image" height="100%" width="100%" patternContentUnits="objectBoundingBox">
+                <image xlink:href="http://freepngimages.com/wp-content/uploads/2015/08/ufo-spaceship.png" preserveAspectRatio="none" width="1" height="1" />
+            </pattern>
+        </defs>
+        <defs>
+            <pattern id="user" height="100%" width="100%" patternContentUnits="objectBoundingBox">
+                <image xlink:href="https://a.fsdn.com/con/app/proj/partartspace/screenshots/Spaceship15.png/1" preserveAspectRatio="none" width="1" height="1" />
+            </pattern>
+        </defs>
+        <defs>
+            <pattern id="bossimg" height="100%" width="100%" patternContentUnits="objectBoundingBox">
+                <image xlink:href="https://lh3.googleusercontent.com/-fsyqb2pHodo/WJNZHgs8VxI/AAAAAAAADOw/yaaM4UBYLG4HJK0IrkpVRHfQUMqnS7K3gCK8B/s512/20170201_083320.jpg" preserveAspectRatio="none" width="1" height="1" />
+            </pattern>
+        </defs>
+        <defs>
+            <pattern id="lazerimg" height="100%" width="100%" patternContentUnits="objectBoundingBox">
+                <image xlink:href="http://www.iconsplace.com/download/red-laser-beam-512.png" preserveAspectRatio="none" width="1" height="1" />
+            </pattern>
+        </defs>
+
+        //
+
+        <rect display="none" id="player" height="9%" width="9%" x="100" y="575" fill="url(#user)" z-index="-1" />
+        <circle cx="100" cy="575" r="5" fill="yellow" id="playerBullet1" display="none" z-index="-2" />
+        <rect display="none" id="ufo" height="9%" width="9%" x="10%" y="-10%" fill="url(#image)" />
+        <rect display="none" id="ufo1" height="9%" width="9%" x="25%" y="-10%" fill="url(#image)" />
+        <rect display="none" id="ufo2" height="9%" width="9%" x="40%" y="-10%" fill="url(#image)" />
+        <rect display="none" id="ufo3" height="9%" width="9%" x="55%" y="-10%" fill="url(#image)" />
+        <rect display="none" id="ufo4" height="9%" width="9%" x="70%" y="-10%" fill="url(#image)" />
+        <rect display="none" id="ufo5" height="9%" width="9%" x="85%" y="-10%" fill="url(#image)" />
+        <rect display="none" id="doomline" height=".5%" width="300%" y="80%" x="-100%" fill="red" opacity="0.4" />
+        <rect display="none" id="Lline" width=".5%" height="100%" y="1%" x="1%" fill="red" opacity="0.2" />
+        <rect display="none" id="Rline" width=".5%" height="100%" y="1%" x="99%" fill="red" opacity="0.2" />
+        <rect display="none" id="boss" height="45%" width="40%" x="100" y="-500" fill="url(#bossimg)" />
+        <rect display="none" id="bossshot" height="50%" width="38%" x="100" y="-500" fill="url(#lazerimg)" />
+        <text display="none" id="lv1" x="45%" y="50%" font-size="125%" fill="red">LEVEL 1</text>
+        <text display="none" id="lv2" x="45%" y="50%" font-size="125%" fill="red">LEVEL 2</text>
+        <text display="none" id="bossalert" x="45%" y="50%" font-size="125%" fill="red">Warning: Boss</text>
+        <text display="none" id="health" x="3%" y="95%" font-size="115%" fill=" #ff9700"> 3 lives </text>
+    </svg>
+     <audio autoplay loop>
+    <source src="backgroundmusic1.wav" type="audio/wav">
+Your browser does not support the audio element.
+</audio> 
+    <script>
+        var myVar;
+        var bfire;
+        var bprepare;
+        var fireing = true;
+        var fire;
+        var runner;
+        var runnerA;
+        var runnerB;
+        var runnerC;
+        var runnerD;
+        var runnerE;
+        var bosshealth = 20;
+        var d = document.getElementById("player");
+        var playerhealth = 3;
+        var refrain = false;
+        var ya = d.getAttribute("y"); // work on splice
+        var xa = d.getAttribute("x");
+        var y = Number(ya);
+        var x = Number(xa);
+        var pbulletX = x;
+        var pbulletY = y;
+        var bbulletX = bx;
+        var bbulletY = by;
+        var move = 0;
+        var lv1done = false;
+        var done = false;
+        var foward = 0;
+        var colistionA;
+        var colistionB;
+        var colistionC;
+        var colistionD;
+        var colistionE;
+        var colistionF;
+        var colistion;
+        var colistiona;
+        var colistionb;
+        var colistionc;
+        var colistiond;
+        var colistione;
+        var runninA = false;
+        var runninB = false;
+        var runninC = false;
+        var runninD = false;
+        var runninE = false;
+        var runninF = false;
+        var jumpcables;
+        var defeeted = 0;
+        var lifecount = document.getElementById("health");
+        var bbb = document.getElementById("boss");
+        var bbs = document.getElementById("bossshot");
+        var bx = Number(bbs.getAttribute("x"));
+        var by = Number(bbs.getAttribute("y"));
+        var checkk;
+        var speed = 1.95;
+        var bossmvin;
+        var shift = 10;
+        var Line = document.getElementById("Lline");
+        var Rine = document.getElementById("Rline");
+        var vf = document.getElementById("playerBullet1");
+        var sound;
+        var soundP;
+        var soundB;
+        var soundS;
+
+        function update() {
+            d = document.getElementById("player");
+            ya = d.getAttribute("y"); // work on splice
+            xa = d.getAttribute("x");
+            y = Number(ya);
+            x = Number(xa);
+        }
+
+        function jumpstart() {
+            if (runninA == false) {
+                runner = setInterval(dropEnemy, 50);
+            }
+            if (runninB == false) {
+                runnerA = setInterval(dropEnemyA, 50);
+            }
+            if (runninC == false) {
+                runnerB = setInterval(dropEnemyB, 50);
+            }
+            if (runninD == false) {
+                runnerC = setInterval(dropEnemyC, 50);
+            }
+            if (runninE == false) {
+                runnerD = setInterval(dropEnemyD, 50);
+            }
+            if (runninF == false) {
+                runnerE = setInterval(dropEnemyE, 50);
+            }
+        }
+
+        var level = -30;
+        //hpos = 10,
+        var levelA = -30;
+        var levelB = -30;
+        var levelC = -30;
+        var levelD = -30;
+        var levelE = -30;
+        var a = document.getElementById("ufo");
+        var B = document.getElementById("ufo1");
+        var C = document.getElementById("ufo2");
+        var D = document.getElementById("ufo3");
+        var E = document.getElementById("ufo4");
+        var F = document.getElementById("ufo5");
+
+
+        function dropEnemy() {
+            level = level + speed;
+            if ((colistion == true)) level = -30;
+            a.setAttribute("y", level);
+            runninA = true;
+        }
+
+        function dropEnemyA() {
+            levelA = levelA + speed;
+            if ((colistiona == true)) levelA = -30;
+            B.setAttribute("y", levelA);
+            runninB = true;
+        }
+
+        function dropEnemyB() {
+            levelB = levelB + speed;
+            if ((colistionb == true)) levelB = -30;
+            C.setAttribute("y", levelB);
+            runninC = true;
+        }
+
+        function dropEnemyC() {
+            levelC = levelC + speed;
+            if ((colistionc == true)) levelC = -30;
+            D.setAttribute("y", levelC);
+            runninD = true;
+        }
+
+        function dropEnemyD() {
+            levelD = levelD + speed;
+            if ((colistiond == true)) levelD = -30;
+            E.setAttribute("y", levelD);
+            runninE = true;
+        }
+
+        function dropEnemyE() {
+            levelE = levelE + speed;
+            if ((colistione == true)) levelE = -30;
+            F.setAttribute("y", levelE);
+            runninF = true;
+        }
+
+
+        function runn() {
+            Line.setAttribute("display", "yes");
+            Rine.setAttribute("display", "yes");
+            var g = document.getElementById("button");
+            g.setAttribute("display", "none");
+            d.setAttribute("display", "yes");
+            a.setAttribute("display", "yes");
+            B.setAttribute("display", "yes");
+            C.setAttribute("display", "yes");
+            D.setAttribute("display", "yes");
+            E.setAttribute("display", "yes");
+            F.setAttribute("display", "yes");
+            lifecount.setAttribute("display", "yes");
+            var b = document.getElementById("boss");
+            b.setAttribute("display", "yes");
+            var w = document.getElementById("doomline");
+            w.setAttribute("display", "yes");
+            foward = 1;
+            move = 1;
+            lvl1ON();
+            myVar = setInterval(pbulletFunc, 10);
+            setTimeout(lvl1Off, 1000);
+            setInterval(update, 50);
+            runner = setInterval(dropEnemy, 50);
+            runnerA = setInterval(dropEnemyA, 50);
+            runnerB = setInterval(dropEnemyB, 50);
+            runnerC = setInterval(dropEnemyC, 50);
+            runnerD = setInterval(dropEnemyD, 50);
+            runnerE = setInterval(dropEnemyE, 50);
+            jumpcables = setInterval(jumpstart, 3271);
+            refrain = false;
+            checkk = setInterval(check, 50);
+            fun = setInterval(bosbulletFunc, 10);
+            speed = 1.95;
+            done = false;
+            lv1done = false;
+            fireing = true;
+            bprepare = setInterval(stopswaping, 1500);
+        }
+
+        function pbulletFunc() {
+            pbulletY = y + 10;
+            pbulletX = x + 21;
+            playerBullet1.setAttribute("cy", pbulletY);
+            playerBullet1.setAttribute("cx", pbulletX);
+        }
+
+        function pbullet1F() {
+            var vf = document.getElementById("playerBullet1");
+            vf.setAttribute("display", "yes");
+            pbulletY = pbulletY - 10;
+            playerBullet1.setAttribute("cy", pbulletY);
+            if ((pbulletY < 0) || (colistionA == true) || (colistionB == true) || (colistionC == true) || (colistionD == true) || (colistionE == true) || (colistionF == true)) {
+                clearInterval(fire);
+                vf.setAttribute("display", "none");
+                myVar = setInterval(pbulletFunc, 10);
+                refrain = false;
+            }
+        }
+
+        function bosbulletFunc() {
+            bbulletY = by - 20;
+            bbulletX = bx;
+            console.log("follow on");
+            bbs.setAttribute("y", bbulletY);
+            bbs.setAttribute("x", bbulletX);
+        }
+
+        function bosbullet1F() {
+            console.log("shoot on");
+            bbs.setAttribute("display", "yes");
+            bbulletY = bbulletY + 13;
+            var byyy = Number(bbulletY);
+            bbs.setAttribute("y", byyy);
+            fireing = true;
+            if (bbulletY > 1500) {
+                clearInterval(bfire);
+                bbs.setAttribute("display", "none");
+                fun = setInterval(bosbulletFunc, 10);
+                fireing = false;
+            }
+        }
+
+        function stopswaping() {
+            clearInterval(fun);
+            if (fireing == false) {
+                bfire = setInterval(bosbullet1F, 50);
+            }
+        }
+
+        function bossmove() {
+            by = 0;
+            bbb.setAttribute("y", by);
+            bx = Number(bbb.getAttribute("x"));
+            bx = bx + shift;
+            bbb.setAttribute("x", bx);
+        }
+
+
+        function resetufo() {
+            a.setAttribute("y", "-1%");
+            B.setAttribute("y", "-1%");
+            C.setAttribute("y", "-1%");
+            D.setAttribute("y", "-1%");
+            E.setAttribute("y", "-1%");
+            F.setAttribute("y", "-1%");
+            runner = setInterval(dropEnemy, 50);
+            runnerA = setInterval(dropEnemyA, 50);
+            runnerB = setInterval(dropEnemyB, 50);
+            runnerC = setInterval(dropEnemyC, 50);
+            runnerD = setInterval(dropEnemyD, 50);
+            runnerE = setInterval(dropEnemyE, 50);
+            level = -30;
+            levelA = -30;
+            levelB = -30;
+            levelC = -30;
+            levelD = -30;
+            levelE = -30;
+        }
+
+        function removeufo() {
+            a.setAttribute("y", "-10%");
+            B.setAttribute("y", "-10%");
+            C.setAttribute("y", "-10%");
+            D.setAttribute("y", "-10%");
+            E.setAttribute("y", "-10%");
+            F.setAttribute("y", "-10%");
+            runninA = true;
+            runninB = true;
+            runninC = true;
+            runninD = true;
+            runninE = true;
+            runninF = true;
+        }
+
+
+        function reset() {
+            playerhealth = 3;
+            var g = document.getElementById("button");
+            Line.setAttribute("display", "none");
+            Rine.setAttribute("display", "none");
+            g.setAttribute("display", "yes");
+            d.setAttribute("display", "none");
+            d.setAttribute("y", "575");
+            d.setAttribute("x", "100");
+            a.setAttribute("display", "none");
+            a.setAttribute("y", "-10%");
+            B.setAttribute("display", "none");
+            B.setAttribute("y", "-10%");
+            C.setAttribute("display", "none");
+            C.setAttribute("y", "-10%");
+            D.setAttribute("display", "none");
+            D.setAttribute("y", "-10%");
+            E.setAttribute("display", "none");
+            E.setAttribute("y", "-10%");
+            F.setAttribute("display", "none");
+            F.setAttribute("y", "-10%");
+            lifecount.setAttribute("display", "none");
+            bbb.setAttribute("display", "none");
+            bbb.setAttribute("y", "-53%");
+            var w = document.getElementById("doomline");
+            w.setAttribute("display", "none");
+            foward = 0;
+            move = 0;
+            defeeted = 0;
+            clearInterval(fire);
+            clearInterval(myVar);
+            bosshealth = 20;
+            var vf = document.getElementById("playerBullet1");
+            vf.setAttribute("display", "none");
+            bbs.setAttribute("display", "none");
+            refrain = true;
+            level = -30;
+            //hpos = 10,
+            levelA = -30;
+            levelB = -30;
+            levelC = -30;
+            levelD = -30;
+            levelE = -30;
+            runninA = false;
+            runninB = false;
+            runninC = false;
+            runninD = false;
+            runninE = false;
+            runninF = false;
+            clearInterval(jumpcables);
+            clearInterval(checkk);
+            clearInterval(fun);
+            clearInterval(bossmvin);
+            clearInterval(bfire);
+            clearInterval(bprepare);
+            clearInterval(stopswaping);
+            done = false;
+            fireing = true;
+        }
+
+        document.onkeydown = function (k) {
+            ya = d.getAttribute("y"); // work on splice
+            xa = d.getAttribute("x");
+            y = Number(ya);
+            x = Number(xa);
+            var change = 1;
+            if (move == 1) {
+                if (k.keyCode == 38 && foward == 1) {
+                    y = y - 7;
+                    d.setAttribute("y", y);
+                }
+                if (k.keyCode == 40) {
+                    y = y + 7;
+                    d.setAttribute("y", y);
+                }
+                if (k.keyCode == 37) {
+                    x = x - 7;
+                    d.setAttribute("x", x);
+                }
+                if (k.keyCode == 39) {
+                    x = x + 7;
+                    d.setAttribute("x", x);
+                }
+                if (refrain == false) {
+                    if (k.keyCode == 32) {
+                        clearInterval(myVar);
+                        fire = setInterval(pbullet1F, 10);
+                        refrain = true;
+                        console.log("shot");
+                        soundS = new Audio ('pew.wav');
+                        soundS.play();
+                    }
+                }
+            }
+        }
+        var fun;
+
+        function lvl1ON() {
+            var xc = document.getElementById("lv1");
+            xc.setAttribute("display", "yes");
+        }
+
+        function lvl1Off() {
+            var xc = document.getElementById("lv1");
+            xc.setAttribute("display", "none");
+        }
+
+        function lv2ON() {
+            var xv = document.getElementById("lv2");
+            xv.setAttribute("display", "yes");
+        }
+
+        function lvl2Off() {
+            var xv = document.getElementById("lv2");
+            xv.setAttribute("display", "none");
+        }
+
+        function BosswarnON() {
+            var xb = document.getElementById("bossalert");
+            xb.setAttribute("display", "yes");
+        }
+
+        function BosswarnOff() {
+            var xb = document.getElementById("bossalert");
+            xb.setAttribute("display", "none");
+        }
+
+
+        function check() {
+            var uf0 = document.getElementById("ufo");
+            var uf1 = document.getElementById("ufo1");
+            var uf2 = document.getElementById("ufo2");
+            var uf3 = document.getElementById("ufo3");
+            var uf4 = document.getElementById("ufo4");
+            var uf5 = document.getElementById("ufo5");
+            var Lside = document.getElementById("Lline");
+            var Rside = document.getElementById("Rline");
+            var end = document.getElementById("doomline");
+            var player = document.getElementById("player");
+            var playerbul = document.getElementById("playerBullet1");
+            var boss = document.getElementById("boss");
+            var bosshot = document.getElementById("bossshot");
+            var colistion = intersectRect(end, uf0);
+            var colistiona = intersectRect(end, uf1);
+            var colistionb = intersectRect(end, uf2);
+            var colistionc = intersectRect(end, uf3);
+            var colistiond = intersectRect(end, uf4);
+            var colistione = intersectRect(end, uf5);
+            var colistionA = intersectRect(playerbul, uf0);
+            var colistionB = intersectRect(playerbul, uf1);
+            var colistionC = intersectRect(playerbul, uf2);
+            var colistionD = intersectRect(playerbul, uf3);
+            var colistionE = intersectRect(playerbul, uf4);
+            var colistionF = intersectRect(playerbul, uf5);
+            var plyblarea = intersectRect(end, player);
+            var colistionfin = intersectRect(playerbul, boss);
+            var playerhit = intersectRect(player, bosshot);
+            var bosslL = intersectRect(boss, Lside);
+            var bosslR = intersectRect(boss, Rside);
+            if ((colistion == true) || (colistiona == true) || (colistionb == true) || (colistionc == true) || (colistiond == true) || (colistione == true) || (playerhit == true)) {
+                if (colistion == true) {
+                    a.setAttribute("y", "-10%");
+                    level = -30;
+                    playerhealth = playerhealth - 1;
+                }
+                if (colistiona == true) {
+                    B.setAttribute("y", "-10%");
+                    levelA = -30;
+                    playerhealth = playerhealth - 1;
+                }
+                if (colistionb == true) {
+                    C.setAttribute("y", "-10%");
+                    levelB = -30;
+                    playerhealth = playerhealth - 1;
+                }
+                if (colistionc == true) {
+                    D.setAttribute("y", "-10%");
+                    levelC = -30;
+                    playerhealth = playerhealth - 1;
+                }
+                if (colistiond == true) {
+                    E.setAttribute("y", "-10%");
+                    levelD = -30;
+                    playerhealth = playerhealth - 1;
+                }
+                if (colistione == true) {
+                    F.setAttribute("y", "-10%");
+                    levelE = -30;
+                    playerhealth = playerhealth - 1;
+                }
+                if (playerhit == true) {
+                    playerhealth = playerhealth - 1;
+                    clearInterval(bfire);
+                    bbs.setAttribute("display", "none");
+                    fun = setInterval(bosbulletFunc, 10);
+                    fireing = false;
+                    console.log("player hit");
+                }
+                sound = new Audio('boom.wav');
+                sound.play();
+            }
+            lifecount.textContent = playerhealth + " lives";
+            if (bosslL == true) {
+                shift = 10;
+            }
+            if (bosslR == true) {
+                shift = -10;
+            }
+            if (playerhealth <= 0) {
+                soundP = new Audio('playerd.wav');
+                soundP.play();
+                alert("game over");
+                clearInterval(runner);
+                clearInterval(runnerA);
+                clearInterval(runnerB);
+                clearInterval(runnerC);
+                clearInterval(runnerD);
+                clearInterval(runnerE);
+                reset();
+            }
+            if (colistionA == true) {
+                uf0.setAttribute("x", "10%");
+                uf0.setAttribute("y", "-10%");
+                clearInterval(runner);
+                level = -29;
+                console.log("hit");
+                runninA = false;
+                defeeted = defeeted + 1;
+                sound = new Audio('boom.wav');
+                sound.play();
+            }
+            if (colistionB == true) {
+                uf1.setAttribute("x", "25%");
+                uf1.setAttribute("y", "-10%");
+                console.log("hit");
+                clearInterval(runnerA);
+                levelA = -38;
+                runninB = false;
+                defeeted = defeeted + 1;
+                sound = new Audio('boom.wav');
+                sound.play();
+            }
+            if (colistionC == true) {
+                uf2.setAttribute("x", "40%");
+                uf2.setAttribute("y", "-10%");
+                console.log("hit");
+                clearInterval(runnerB);
+                levelB = -40;
+                runninC = false;
+                defeeted = defeeted + 1;
+                sound = new Audio('boom.wav');
+                sound.play();
+            }
+            if (colistionD == true) {
+                uf3.setAttribute("x", "55%");
+                uf3.setAttribute("y", "-10%");
+                console.log("hit");
+                clearInterval(runnerC);
+                levelC = -35;
+                runninD = false;
+                defeeted = defeeted + 1;
+                sound = new Audio('boom.wav');
+                sound.play();
+            }
+            if (colistionE == true) {
+                uf4.setAttribute("x", "70%");
+                uf4.setAttribute("y", "-10%");
+                console.log("hit");
+                clearInterval(runnerD);
+                levelD = -39;
+                runninE = false;
+                defeeted = defeeted + 1;
+            }
+            if (colistionF == true) {
+                uf5.setAttribute("x", "85%");
+                uf5.setAttribute("y", "-10%");
+                console.log("hit");
+                clearInterval(runnerE);
+                levelE = -33;
+                runninF = false;
+                defeeted = defeeted + 1;
+                sound = new Audio('boom.wav');
+                sound.play();
+            }
+            if (colistionfin == true) {
+                bosshealth = bosshealth - 1;
+                clearInterval(fire);
+                vf.setAttribute("display", "none");
+                myVar = setInterval(pbulletFunc, 10);
+                refrain = false;
+                sound = new Audio('boom.wav');
+                sound.play();
+            }
+            if (bosshealth <= 0) {
+                soundB = new Audio ('no.wav');
+                soundB.play();
+                alert("YOU WIN, EARTH IS SAFE!!!!!!!!");
+                clearInterval(runner);
+                clearInterval(runnerA);
+                clearInterval(runnerB);
+                clearInterval(runnerC);
+                clearInterval(runnerD);
+                clearInterval(runnerE);
+                reset();
+            }
+            if (plyblarea == true) {
+                foward = 0;
+            }
+            if (plyblarea == false) {
+                foward = 1;
+            }
+            if ((defeeted == 15) &&(lv1done == false)) {
+                speed = 2.35;
+                lv2ON();
+                lv1done = true;
+                clearInterval(runner);
+                clearInterval(runnerA);
+                clearInterval(runnerB);
+                clearInterval(runnerC);
+                clearInterval(runnerD);
+                clearInterval(runnerE);
+                resetufo();
+                setTimeout(lvl2Off, 1000);
+            }
+            if ((defeeted == 35) && (done == false)) {
+                speed = 0;
+                done = true;
+                clearInterval(runner);
+                clearInterval(runnerA);
+                clearInterval(runnerB);
+                clearInterval(runnerC);
+                clearInterval(runnerD);
+                clearInterval(runnerE);
+                removeufo();
+                BosswarnON();
+                fireing = false;
+                setTimeout(BosswarnOff(), 1000);
+                bossmvin = setInterval(bossmove, 50);
+            }
+        }
+
+        function intersectRect(r1, r2) {
+            var r1 = r1.getBoundingClientRect(); //BOUNDING BOX OF THE FIRST OBJECT
+            var r2 = r2.getBoundingClientRect(); //BOUNDING BOX OF THE SECOND OBJECT
+
+            //CHECK IF THE TWO BOUNDING BOXES OVERLAP
+            return !(r2.left > r1.right ||
+                r2.right < r1.left ||
+                r2.top > r1.bottom ||
+                r2.bottom < r1.top);
+        }
+    </script>
+    <div id="welcome">
+        Welcome to the game
+    </div>
+    <div id="rules">
+        <p> use the arrow keys to move and the spacebar to shoot.<br/>
+         if the boss shoots you or gets past the red line, you lose a life. <br/>
+         If you lose all 3 lives you lose the game</p>
+    </div>
+    <div id="sidenote"> If you so not see the ship you may have to move it up. <br/>
+                        You cannot shoot and move at the same time, so remove your<br/> hands from the arrow keys when you shoot</div>
+
+</body>
+
+</html>

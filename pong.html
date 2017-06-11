@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pong</title>
+</head>
+
+<body style="font-family:Comic Sans MS, cursive, sans-serif; background-color: black">
+<h1 style="color: white">Welcome to pong</h1>
+<p style="font-size: 100%; color: white">player 1 (left) uses the w and s keys to move up and down</p>
+<p style="font-size: 100%; color: white">player 2 (right) uses the up and down keys to move</p>
+<button onclick="go()">start</button>
+    <svg width="1000" height="462" style="background-color:black; position: absolute; left: 75px; top: 150px">
+        <circle id="ball" cx="500" cy="120" r="10" fill="white" />
+        <rect id="paddleA" width="5" height="80" x="950" y="150" fill="white" />
+        <rect id="paddleB" width="5" height="80" x="50" y="150" fill="white" />
+        <rect id="wallA" width="1000" height="3" x="0" y="20" fill="white" />
+        <rect id="wallB" width="1000" height="3" x="0" y="448" fill="white" />
+        <rect id="goalB" width="1" height="462" x="20" y="0" fill="white" />
+        <rect id="goalA" width="1" height="462" x="980" y="0" fill="white" />
+        <text id="playerA" x="400" y="100" fill="white" style="font-size: 150%;font-color: white">0</text>
+        <text id="playerB" x="600" y="100" fill="white" style="font-size: 150%;font-color: white">0</text>
+    </svg>
+    <script>
+        var changeY = 1;
+        var changeX = 3;
+        var scoreA = 0;
+        var scoreB = 0;
+	var on = false;
+	var playing = null;
+ 
+         document.onkeydown = function (k) {
+            if (k.keyCode == 87) { //this is the "w" key
+                var e = document.getElementById("paddleB");
+                var levelA = e.getAttribute("y");
+                levelA = Number(levelA) - 10;
+                e.setAttribute("y", levelA);
+            }
+            if (k.keyCode == 83) {
+                var e = document.getElementById("paddleB");
+                var levelA = e.getAttribute("y");
+                levelA = Number(levelA) + 10;
+                e.setAttribute("y", levelA);
+            }
+            if (k.keyCode == 38) {
+                var g = document.getElementById("paddleA");
+                var levelB = g.getAttribute("y");
+                levelB = Number(levelB) - 10;
+                g.setAttribute("y", levelB);
+            }
+            if (k.keyCode == 40) {
+                var g = document.getElementById("paddleA");
+                var levelB = g.getAttribute("y");
+                levelB = Number(levelB) + 10;
+                g.setAttribute("y", levelB);
+            }
+        }
+
+        function Ani() {
+            var g = document.getElementById("ball");
+            var levelC = g.getAttribute("cx");
+            levelC = Number(levelC) + changeX;
+            g.setAttribute("cx", levelC);
+            var levelG = g.getAttribute("cy");
+            levelG = Number(levelG) + changeY;
+            g.setAttribute("cy", levelG);
+            var ball = document.getElementById("ball");
+            var paddle = document.getElementById("paddleA");
+            var paddleE = document.getElementById("paddleB");
+            var bordA = document.getElementById("wallA");
+            var bordB = document.getElementById("wallB");
+            var goalA = document.getElementById("goalA");
+            var goalB = document.getElementById("goalB");
+            var checkOne = intersectRect(paddle, ball);
+            var checkTwo = intersectRect(paddleE, ball);
+            var checkThre = intersectRect(ball, bordA);
+            var checkFour = intersectRect(ball, bordB);
+            var checkFive = intersectRect(ball, goalA);
+            var checkSix = intersectRect(ball, goalB);
+            document.getElementById("playerA").innerHTML = scoreA;
+            document.getElementById("playerB").innerHTML = scoreB;
+
+            if ((checkThre == true) || (checkFour == true)) {
+                changeY = -changeY;
+                console.log("hit");
+            }
+            if ((checkOne == true) || (checkTwo == true)) {
+                if (changeX< 0){
+                    changeX = changeX - .1;
+                }
+                if (changeX > 0){
+                    changeX = changeX + .1;
+                }
+                changeX = -changeX;
+                console.log("hit");
+            }
+            if (checkFive == true) {
+                scoreA = scoreA + 1;
+                if (changeX< 0){
+                    changeX = -3;
+                }
+                if (changeX > 0){
+                    changeX = 3;
+                }
+		changeX = -changeX
+                var aS = document.getElementById("ball");
+                aS.setAttribute("cy", 120);
+                aS.setAttribute("cx", 650);
+            }
+            if (checkSix == true) {
+                scoreB = scoreB + 1;
+                if (changeX< 0){
+                    changeX = -3;
+                }
+                if (changeX > 0){
+                    changeX = 3;
+                }
+		changeX = -changeX
+                var aS = document.getElementById("ball");
+                aS.setAttribute("cy", 120);
+                aS.setAttribute("cx", 650);
+            }
+	    if((scoreB == 10) || (scoreA == 10)){
+		clearInterval(playing);
+		if (scoreB == 10){
+		alert("player 2 won!");
+		}
+		if (scoreA == 10){
+		alert("player 1 won!");
+		}
+		scoreB = 0;
+		scoreA = 0;
+		var aS = document.getElementById("ball");
+                aS.setAttribute("cy", 120);
+                aS.setAttribute("cx", 650);
+		on = false;
+		}
+        }
+
+        function intersectRect(r1, r2) {
+            var r1 = r1.getBoundingClientRect(); //BOUNDING BOX OF THE FIRST OBJECT
+            var r2 = r2.getBoundingClientRect(); //BOUNDING BOX OF THE SECOND OBJECT
+
+            //CHECK IF THE TWO BOUNDING BOXES OVERLAP
+            return !(r2.left > r1.right ||
+                r2.right < r1.left ||
+                r2.top > r1.bottom ||
+                r2.bottom < r1.top);
+        }
+	function go(){
+	if (on == false){
+        playing = setInterval(Ani, 9);
+	on = true;
+	}
+	}	
+    </script>
+</body>
+
+</html>

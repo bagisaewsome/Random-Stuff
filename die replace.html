@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title></title>
+</head>
+
+<body>
+    <div>
+    <button onclick="hundred()">generate monster</button>
+    <p id= "monster"></p>
+    </div>
+    <div>
+    <button onclick="fun()"> generate name</button>
+    <p id="name"></p>
+    </div>
+</body>
+    
+    <script>
+        var namesf = new Array("Abasi","Adah", "Brastias", "Calesic", "Chiru", "Danel","Embian", "Eshka", "Fulvio", "Galeron", "Ghislan", "Helker", "Inasco", "Istenlan", "Janzoon", "Keupear", "Kamesh", "Leborinsi", "Mirdan", "Momusai", "Nalek", "Ondres", "Orance", "Plylos", "Quatril", "Quryn", "Rovere", "Scaith", "Selvil", "Therol", "Valnath", "Vanne", "Ultham", "Wenric", "Wencen", "Xaphan", "Yanil", "Yulasan", "Zarax", "Somel","Abrasax","Balmundes", "Bulmdune", "Calibras", "Daggerford", "Danodar","Enestrene", "Feodyin", "Fostengar", "Gamadril", "Hamerston", "Hercomkrates", "Igrendrazoar", "Jarninun", "Jendrian", "Kailserai", "Laelishar", "Lemminaen", "Malagarax", "Norado", "Nuhgah", "Onesinos", "Palanides", "Porpherio", "Quassam", "Raidanos", "Roshren", "Shearoon", "Tanemen", "Thendrick", "Uthang", "Wendelo", "Volfango", "Vinaghi", "Xandos", "Xanalien", "Yervirah", "Zanora", "Zaghual", "Gouanon");
+        var namesL = new Array("Abrasax","Balmundes", "Bulmdune", "Calibras", "Daggerford", "Danodar","Enestrene", "Feodyin", "Fostengar", "Gamadril", "Hamerston", "Hercomkrates", "Igrendrazoar", "Jarninun", "Jendrian", "Kailserai", "Laelishar", "Lemminaen", "Malagarax", "Norado", "Nuhgah", "Onesinos", "Palanides", "Porpherio", "Quassam", "Raidanos", "Roshren", "Shearoon", "Tanemen", "Thendrick", "Uthang", "Wendelo", "Volfango", "Vinaghi", "Xandos", "Xanalien", "Yervirah", "Zanora", "Zaghual", "Gouanon","Abasi","Adah", "Brastias", "Calesic", "Chiru", "Danel","Embian", "Eshka", "Fulvio", "Galeron", "Ghislan", "Helker", "Inasco", "Istenlan", "Janzoon", "Keupear", "Kamesh", "Leborinsi", "Mirdan", "Momusai", "Nalek", "Ondres", "Orance", "Plylos", "Quatril", "Quryn", "Rovere", "Scaith", "Selvil", "Therol", "Valnath", "Vanne", "Ultham", "Wenric", "Wencen", "Xaphan", "Yanil", "Yulasan", "Zarax", "Somel");
+        var monsterE = new Array("Imp", "rat", "skeleton", "sprite", "zombie", "wolf", "needle blight", "crawling claw", "dretch", "manes", "quasit", "lemure", "Pteranodon", "brass dragon wyrmling", "Flumph", "Gnoll", "deep gnoll", "goblin", "duodrone", "shadow", "slaad tadpole", "Specter", "sprite", "troglydyte", "will o wisp", "black bear", "giant crab", "giant bat", "giant spider", "fire snake", "Sahuagin", "rust monster", "psuedodragon", "pixie", "Piercer", "orc", "bandit", "accolyte", "Hobgoblin", "Jackalwere", "Kenku", "Winged Kobold", "KOBOLD", "Kuo-ToA"," magmin", " dust mephit", "ice mephit");
+    function fun(){
+        var name1 = Math.ceil(Math.random() *80);
+        var name2 = Math.ceil(Math.random() *80);
+        document.getElementById("name").innerHTML = namesf[name1 - 1] + " " + namesL[name2 - 1];
+    }
+    function hundred(){
+        var num = Math.ceil(Math.random() *47);
+        document.getElementById("monster"). innerHTML = monsterE[num-1];
+    }
+    </script>
+</html>

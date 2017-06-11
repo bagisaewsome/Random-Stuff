@@ -1,0 +1,119 @@
+<html>
+<head>
+<title>Keypress Demo</title>
+</head>
+<body style="background-color: #608700; font-size: 200%; font-family: Comic Sans MS, cursive, sans-serif">
+<div id="time" style="position: absolute; left: 700px; top: 100px;">NO time right now</div>
+<div id="status" style="position: absolute; left: 700px; top: 50px;"> currently playing</div>
+<div id="highscore" style="position: absolute; left: 700px; top: 200px"></div>
+<p>use the arrow keys to move</p>
+<script>
+var current = 0;
+var score = null;
+var highscore = 200;
+var countTime = null;
+var game = 0;
+function time(){
+    current = current + 1;
+    score = current;
+    document.getElementById("time").innerHTML = current + " seconds past";
+}
+function run(){
+var ballX = Number(document.getElementById("disc").getAttribute("cx"));
+if (ballX == 150 && game == 0){
+countTime = setInterval(time, 1000);
+}
+}
+setInterval(run, 30);
+
+document.onkeydown = function(k) { 
+var change = 1;
+if (k.keyCode == 40) {
+var d=document.getElementById("disc");
+var level=d.getAttribute("cy");
+level = Number(level) + change;
+d.setAttribute("cy",level);
+}
+if (k.keyCode == 38) {
+    var e = document.getElementById("disc");
+    var levelA= e.getAttribute("cy");
+    levelA = Number(levelA) - change;
+    e.setAttribute("cy", levelA);
+}
+if (k.keyCode == 39) {
+    var f = document.getElementById("disc");
+    var levelB = f.getAttribute("cx");
+    levelB = Number(levelB) + change;
+    f.setAttribute("cx", levelB);
+}
+if  (k.keyCode == 37) {
+    var g = document.getElementById("disc");
+    var levelC = g.getAttribute("cx");
+    levelC = Number(levelC) - change;
+    g.setAttribute("cx", levelC);
+}
+document.getElementById("status").innerHTML = "currently playing";
+var ball = document.getElementById("disc");
+var boxA = document.getElementById("wallA");
+var boxB = document.getElementById("wallB");
+var boxC = document.getElementById("wallC");
+var boxD = document.getElementById("wallD")
+var boxE = document.getElementById("wallE");
+var boxF = document.getElementById("wallF");
+var boxG = document.getElementById("wallG");
+var end = document.getElementById("finish");
+var checkOne = intersectRect(ball,boxA);
+var checkTwo = intersectRect(ball,boxB);
+var checkThre = intersectRect(ball,boxC);
+var checkFour = intersectRect(ball,boxD);
+var checkFive = intersectRect(ball,boxE);
+var checkSix = intersectRect(ball,boxF);
+var checkSev = intersectRect(ball,boxG);
+var checkEnd = intersectRect(ball, end);
+
+if ((checkOne == true) || (checkTwo == true) || (checkThre == true) || (checkFour == true) || (checkFive == true) || (checkSix == true) || (checkSev == true) ){
+    document.getElementById("status").innerHTML = "game over";
+    var h = document.getElementById("disc");
+    game = 1;
+    h.setAttribute("cx", 25);
+    h.setAttribute("cy", 20);
+}
+if (checkEnd == true){
+    document.getElementById("status").innerHTML = "you win";
+    if(score < highscore){
+	highscore = score;
+	}
+    game = 0;
+    var k = document.getElementById("disc");
+    document.getElementById("highscore").innerHTML = "the highscore is " + highscore; 
+    k.setAttribute("cx", 25);
+    k.setAttribute("cy", 20);
+    clearInterval(countTime);
+    current = 0;
+    document.getElementById("time").innerHTML = "0";
+}
+}
+function intersectRect(r1, r2) {
+    var r1 = r1.getBoundingClientRect();    //BOUNDING BOX OF THE FIRST OBJECT
+    var r2 = r2.getBoundingClientRect();    //BOUNDING BOX OF THE SECOND OBJECT
+ 
+    //CHECK IF THE TWO BOUNDING BOXES OVERLAP
+  return !(r2.left > r1.right || 
+           r2.right < r1.left || 
+           r2.top > r1.bottom ||
+           r2.bottom < r1.top);
+}
+</script>
+<svg width="500" height="370" style= "background-color:#1006a7;">
+<circle id="disc" cx="25" cy="20" r="10" fill="green" />
+<rect id="wallA" width="50" height= "140" x="150" fill= "#b60d0d" /> 
+<rect id="wallB" width="80" height= "190" x="150" y="168" fill= "#b60d0d"/>
+<rect id="wallC" width="50" height= "100" x="230" y="130" fill= "#b60d0d"/>
+<rect id="wallD" width="180" height= "50" x="150" y="50" fill="#b60d0d"/>
+<rect id="wallE" width="50" height= "210" x="310" y="50" fill="#b60d0d"/>
+<rect id="wallF" width="100" height="20" x="265" y="255" fill="#b60d0d"/>
+<rect id="wallG" width="200" height="30" x="230" y="307" fill="#b60d0d"/>
+<rect id="finish" width="300" height= "550" x="450" y="0" fill="green"/>
+</svg>
+</body>
+</html>
